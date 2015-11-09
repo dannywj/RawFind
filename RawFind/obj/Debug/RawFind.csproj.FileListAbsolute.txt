@@ -1,0 +1,5 @@
+c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\bin\Debug\RawFind.exe.config
+c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\bin\Debug\RawFind.exe
+c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\bin\Debug\RawFind.pdb
+c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\obj\Debug\RawFind.exe
+c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\obj\Debug\RawFind.pdb
