@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Form1 : Form
+    public partial class RawFind : Form
     {
         static string JPG_PATH;
         static string RAW_FILE_EXTENSIOM;
@@ -20,17 +20,15 @@ namespace WindowsFormsApplication1
         static string FINAL_RESULT_PATH;
         static int PROCESS_COUNT;
         static List<string> COPY_LIST = new List<string>();
+        static StringBuilder LOG_INFO = new StringBuilder();
 
-        public Form1()
+        public RawFind()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string txt = textBox1.Text.ToString();
-            ////MessageBox.Show(txt);
-
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 textBox1.Text = folderBrowserDialog1.SelectedPath;
@@ -55,6 +53,7 @@ namespace WindowsFormsApplication1
 
         private void btn_process_Click(object sender, EventArgs e)
         {
+            AppendLogInfo("======Begin process======");
             JPG_PATH = textBox1.Text.ToString();
             SEARCH_RAW_PATH = textBox2.Text.ToString();
             FINAL_RESULT_PATH = textBox3.Text.ToString();
@@ -62,17 +61,15 @@ namespace WindowsFormsApplication1
             PROCESS_COUNT = 0;
             JPG_COUNT = 0;
 
-
-
             var list = GetList();
             JPG_COUNT = list.Count;
-            //MessageBox.Show(JPG_COUNT.ToString());
+            AppendLogInfo(JPG_COUNT.ToString());
 
 
-            //MessageBox.Show("JPG Count:" + JPG_COUNT);
+            AppendLogInfo("JPG Count:" + JPG_COUNT);
             for (int i = 0; i < list.Count; i++)
             {
-                //MessageBox.Show(list[i].ToString());
+                AppendLogInfo(list[i].ToString());
                 //find file
                 //路径名
                 string DirName = SEARCH_RAW_PATH;
@@ -80,26 +77,33 @@ namespace WindowsFormsApplication1
                 string FileName = list[i].ToString();
                 //处理程序(遍历查找+文件复制)
                 ProcessFiles(FileName);
-                ////MessageBox.Show("PROCESS_COUNT:" + PROCESS_COUNT + "  JPG_COUNT:" + JPG_COUNT);
+                AppendLogInfo("PROCESS_COUNT:" + PROCESS_COUNT + "  JPG_COUNT:" + JPG_COUNT);
 
                 //计算百分比
                 double percent = (double)PROCESS_COUNT / JPG_COUNT;
                 string percentText = percent.ToString("0.0%");//最后percentText的值为10.0%
-                //MessageBox.Show("Process:" + percentText);
+                AppendLogInfo("Process:" + percentText);
             }
 
-            //MessageBox.Show("PROCESS_COUNT:" + PROCESS_COUNT);
+            AppendLogInfo("PROCESS_COUNT:" + PROCESS_COUNT);
             CopyJPGFiles(list);
-            //MessageBox.Show("======End process======");
-
+            AppendLogInfo("======End process======");
+            AppendLogInfo(LOG_INFO.ToString());
 
 
 
         }
 
+        private void AppendLogInfo(String info)
+        {
+            LOG_INFO.Append(info + "\r\n");
+            rtbLog.ForeColor = Color.Green;
+            rtbLog.Text = LOG_INFO.ToString();
+        }
+
         private List<string> GetList()
         {
-            ////MessageBox.Show("Begin getlist");
+            AppendLogInfo("Begin getlist");
             List<string> list = new List<string>();
             string path = JPG_PATH;
             DirectoryInfo folder = new DirectoryInfo(path);
@@ -112,7 +116,7 @@ namespace WindowsFormsApplication1
         }
 
 
-        static void GetFileName(string DirName, string FileName)
+        private void GetFileName(string DirName, string FileName)
         {
             //文件夹信息
             DirectoryInfo dir = new DirectoryInfo(DirName);
@@ -128,9 +132,10 @@ namespace WindowsFormsApplication1
             {
                 fname = finfo[i].Name.ToUpper();
                 //判断文件是否包含查询名
-                if (fname.IndexOf(FileName) > -1)
+                //if (fname.IndexOf(FileName) > -1)
+                if (fname == FileName)
                 {
-                    //MessageBox.Show("Find! " + finfo[i].FullName);
+                    AppendLogInfo("Find! " + finfo[i].FullName);
                     CopyFile(finfo[i].FullName, finfo[i].Name);
                 }
             }
@@ -150,17 +155,17 @@ namespace WindowsFormsApplication1
         /// </summary>
         /// <param name="fileFullName"></param>
         /// <param name="fileName"></param>
-        static void CopyFile(string fileFullName, string fileName)
+        private void CopyFile(string fileFullName, string fileName)
         {
             string destPath = FINAL_RESULT_PATH + @"\" + fileName;
             if (File.Exists(destPath))
             {
-                //MessageBox.Show("File Exists! " + destPath);
+                AppendLogInfo("File Exists! " + destPath);
             }
             else
             {
                 System.IO.File.Copy(fileFullName, destPath);
-                //MessageBox.Show("Copy File Success! " + destPath);
+                AppendLogInfo("Copy File Success! " + destPath);
             }
             MarkFile(fileName);
         }
@@ -168,7 +173,7 @@ namespace WindowsFormsApplication1
         /// 执行遍历处理程序并计数
         /// </summary>
         /// <param name="FileName"></param>
-        static void ProcessFiles(string FileName)
+        private void ProcessFiles(string FileName)
         {
             PROCESS_COUNT++;
             string DirName = SEARCH_RAW_PATH;
@@ -187,28 +192,78 @@ namespace WindowsFormsApplication1
         /// <summary>
         /// 将未找到raw的jpg复制到结果集中
         /// </summary>
-        static void CopyJPGFiles(List<string> searchList)
+        private void CopyJPGFiles(List<string> searchList)
         {
-            //MessageBox.Show("-------");
+            AppendLogInfo("-------");
             List<string> jpg_need_copy_list = new List<string>();
             for (int i = 0; i < COPY_LIST.Count; i++)
             {
-                //MessageBox.Show("COPY_LIST:" + COPY_LIST[i].ToString());
-                if (searchList.Contains(COPY_LIST[i].ToString()))
+                AppendLogInfo("COPY_LIST:" + COPY_LIST[i].ToString());
+                if (searchList.Contains(COPY_LIST[i].ToString().ToUpper()))
                 {
-                    searchList.Remove(COPY_LIST[i].ToString());
+                    searchList.Remove(COPY_LIST[i].ToString().ToUpper());
                 }
             }
 
 
             for (int i = 0; i < searchList.Count; i++)
             {
-                //MessageBox.Show("jpg_need_copy_list:" + searchList[i].ToString());
+                AppendLogInfo("jpg_need_copy_list:" + searchList[i].ToString());
                 CopyFile(JPG_PATH + @"\" + searchList[i].ToString().Replace(RAW_FILE_EXTENSIOM, "JPG"), searchList[i].ToString().Replace(RAW_FILE_EXTENSIOM, "JPG"));
             }
 
-            //MessageBox.Show("-------");
+            AppendLogInfo("-------");
         }
 
+        private void rtbLog_TextChanged(object sender, EventArgs e)
+        {
+            //将光标位置设置到当前内容的末尾
+            rtbLog.SelectionStart = rtbLog.Text.Length;
+            //滚动到光标位置
+            rtbLog.ScrollToCaret();
+        }
+        
+
+        // 文件路径选择Begin
+
+        private void btnSelect1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = GetSelectedPath();
+        }
+
+        private void btnSelect2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = GetSelectedPath();
+        }
+
+        private void btnSelect3_Click(object sender, EventArgs e)
+        {
+            textBox3.Text = GetSelectedPath();
+        }
+
+        private String GetSelectedPath()
+        {
+            string defaultPath = "";
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            //打开的文件夹浏览对话框上的描述  
+            dialog.Description = "请选择一个文件夹";
+            //是否显示对话框左下角 新建文件夹 按钮，默认为 true  
+            dialog.ShowNewFolderButton = false;
+            //首次defaultPath为空，按FolderBrowserDialog默认设置（即桌面）选择  
+            if (defaultPath != "")
+            {
+                //设置此次默认目录为上一次选中目录  
+                dialog.SelectedPath = defaultPath;
+            }
+            //按下确定选择的按钮  
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                //记录选中的目录  
+                defaultPath = dialog.SelectedPath;
+            }
+            return defaultPath;
+        }
+
+        // 文件路径选择End
     }
 }

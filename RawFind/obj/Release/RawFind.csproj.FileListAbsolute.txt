@@ -3,3 +3,8 @@ c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\bin\Release
 c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\bin\Release\RawFind.pdb
 c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\obj\Release\RawFind.exe
 c:\users\danny\documents\visual studio 2013\Projects\RawFind\RawFind\obj\Release\RawFind.pdb
+C:\mycode\RawFind\RawFind\bin\Release\RawFind.exe.config
+C:\mycode\RawFind\RawFind\bin\Release\RawFind.exe
+C:\mycode\RawFind\RawFind\bin\Release\RawFind.pdb
+C:\mycode\RawFind\RawFind\obj\Release\RawFind.exe
+C:\mycode\RawFind\RawFind\obj\Release\RawFind.pdb
