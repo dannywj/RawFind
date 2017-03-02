@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -24,9 +25,28 @@ namespace RawFindDesktop
         static string PIC_RESIZE_OUTPUT_PATH;
         public static ArrayList processlist = new ArrayList();
 
+        //第一步：定义BackgroundWorker对象，并注册事件（执行线程主体、执行UI更新事件）
+        private BackgroundWorker backgroundWorker_resizer = null;
+
         public RawFind()
         {
             InitializeComponent();
+            initForm();
+
+            //多线程处理照片缩放
+            backgroundWorker_resizer = new BackgroundWorker();
+            //设置报告进度更新
+            backgroundWorker_resizer.WorkerReportsProgress = true;
+            //注册线程主体方法
+            backgroundWorker_resizer.DoWork += new DoWorkEventHandler(backgroundWorker_resizer_DoWork);
+            //注册更新UI方法
+            backgroundWorker_resizer.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker_resizer_ProgressChanged);
+            //backgroundWorker_resizer.RunWorkerCompleted += new RunWorkerCompletedEventHandler(this.backgroundWorker_resizer_RunWorkerCompleted);
+
+        }
+
+        private void initForm()
+        {
             SetBtnStyle(this.btn_process);
             SetBtnStyle(this.btnResize);
 
@@ -34,6 +54,42 @@ namespace RawFindDesktop
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             //禁止使用最大化按钮
             this.MaximizeBox = false;
+            this.toolStripStatusLabel.Text = "Copyright © 2017 Develop by Danny Wang";
+        }
+
+        //线程主体方法
+        public void backgroundWorker_resizer_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //...执行线程任务
+            AppendLogInfo("=====================begin resize======================");
+            btnResize.Enabled = false;
+
+            //PIC_RESIZE_PATH = "E:\\pic";
+            //PIC_RESIZE_OUTPUT_PATH = "E:\\re";
+
+            if (String.IsNullOrEmpty(PIC_RESIZE_PATH) || String.IsNullOrEmpty(PIC_RESIZE_OUTPUT_PATH))
+            {
+                MessageBox.Show("All Path can not empty");
+                AppendLogInfo("All Path can not empty");
+                btnResize.Enabled = true;
+                return;
+            }
+            AppendLogInfo("PIC_RESIZE_PATH:" + PIC_RESIZE_PATH);
+            AppendLogInfo("Resize px:" + int.Parse(comboBox2.Text.Replace("px", "")).ToString());
+            AppendLogInfo("PIC_RESIZE_OUTPUT_PATH:" + PIC_RESIZE_OUTPUT_PATH);
+
+            ProcessFile(PIC_RESIZE_PATH, int.Parse(comboBox2.Text.Replace("px", "")), PIC_RESIZE_OUTPUT_PATH, true);
+
+            AppendLogInfo("=====================end resize======================");
+            MessageBox.Show("操作完成");
+            btnResize.Enabled = true;
+        }
+
+        //UI更新方法
+        public void backgroundWorker_resizer_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            rtbLog.ForeColor = Color.Green;
+            rtbLog.Text = LOG_INFO.ToString();
         }
 
         private void SetBtnStyle(Button btn)
@@ -294,8 +350,10 @@ namespace RawFindDesktop
         private void AppendLogInfo(String info)
         {
             LOG_INFO.Append(info + "\r\n");
-            rtbLog.ForeColor = Color.Green;
-            rtbLog.Text = LOG_INFO.ToString();
+            //在线程中更新UI（通过ReportProgress方法）
+            backgroundWorker_resizer.ReportProgress(1, null);
+            //rtbLog.ForeColor = Color.Green;
+            //rtbLog.Text = LOG_INFO.ToString();
         }
 
         private void btn_process_MouseHover(object sender, EventArgs e)
@@ -322,21 +380,9 @@ namespace RawFindDesktop
         /// <param name="e"></param>
         private void btnResize_Click(object sender, EventArgs e)
         {
-            AppendLogInfo("=====================begin resize======================");
-            if (String.IsNullOrEmpty(PIC_RESIZE_PATH) || String.IsNullOrEmpty(PIC_RESIZE_OUTPUT_PATH))
-            {
-                MessageBox.Show("All Path can not empty");
-                AppendLogInfo("All Path can not empty");
-                return;
-            }
-            AppendLogInfo("PIC_RESIZE_PATH:" + PIC_RESIZE_PATH);
-            AppendLogInfo("Resize px:" + int.Parse(comboBox2.Text.Replace("px", "")).ToString());
-            AppendLogInfo("PIC_RESIZE_OUTPUT_PATH:" + PIC_RESIZE_OUTPUT_PATH);
 
-            ProcessFile(PIC_RESIZE_PATH, int.Parse(comboBox2.Text.Replace("px", "")), PIC_RESIZE_OUTPUT_PATH, true);
-
-            AppendLogInfo("=====================end resize======================");
-            MessageBox.Show("操作完成");
+            //启动多线程
+            this.backgroundWorker_resizer.RunWorkerAsync();
         }
 
 
