@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawFind", "RawFind\RawFind.csproj", "{7806B3E2-CF2C-46DB-B74C-2551C5043CF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawFindDesktop", "WindowsFormsApplication1\RawFindDesktop.csproj", "{57AF51B4-3E8D-4032-8B72-E7089DF9DE46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawFindDesktop", "RawFindDesktop\RawFindDesktop.csproj", "{57AF51B4-3E8D-4032-8B72-E7089DF9DE46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

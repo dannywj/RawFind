@@ -1,0 +1,17 @@
+C:\mycode\RawFind\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.Properties.Resources.resources
+C:\mycode\RawFind\WindowsFormsApplication1\obj\Release\RawFindDesktop.csproj.GenerateResource.Cache
+C:\mycode\RawFind\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.exe
+C:\mycode\RawFind\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.pdb
+C:\mycode\RawFind\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe.config
+C:\mycode\RawFind\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.exe
+C:\mycode\RawFind\WindowsFormsApplication1\bin\Release\WindowsFormsApplication1.pdb
+C:\mycode\RawFind\WindowsFormsApplication1\obj\Release\WindowsFormsApplication1.RawFind.resources
+C:\mycode\RawFind\WindowsFormsApplication1\obj\Release\RawFindDesktop.csprojResolveAssemblyReference.cache
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.csproj.GenerateResource.Cache
+C:\mycode\GitHub\RawFind\RawFindDesktop\bin\Release\RawFindDesktop.exe.config
+C:\mycode\GitHub\RawFind\RawFindDesktop\bin\Release\RawFindDesktop.exe
+C:\mycode\GitHub\RawFind\RawFindDesktop\bin\Release\RawFindDesktop.pdb
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.RawFind.resources
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.Properties.Resources.resources
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.exe
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.pdb

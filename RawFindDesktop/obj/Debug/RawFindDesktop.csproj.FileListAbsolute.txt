@@ -1,0 +1,8 @@
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Debug\RawFindDesktop.csproj.GenerateResource.Cache
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Debug\RawFindDesktop.RawFind.resources
+C:\mycode\GitHub\RawFind\RawFindDesktop\bin\Debug\RawFindDesktop.exe.config
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Debug\RawFindDesktop.Properties.Resources.resources
+C:\mycode\GitHub\RawFind\RawFindDesktop\bin\Debug\RawFindDesktop.exe
+C:\mycode\GitHub\RawFind\RawFindDesktop\bin\Debug\RawFindDesktop.pdb
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Debug\RawFindDesktop.exe
+C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Debug\RawFindDesktop.pdb
