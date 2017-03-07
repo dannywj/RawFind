@@ -67,7 +67,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(118, 21);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "C:\\p_jpg";
             // 
             // label1
             // 
@@ -84,7 +83,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(118, 21);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "C:\\p_raw";
             // 
             // label2
             // 
@@ -101,7 +99,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(118, 21);
             this.textBox3.TabIndex = 1;
-            this.textBox3.Text = "C:\\re";
             // 
             // label3
             // 

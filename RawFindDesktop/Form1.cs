@@ -247,6 +247,8 @@ namespace RawFindDesktop
             {
                 System.IO.File.Copy(fileFullName, destPath);
                 AppendLogInfo("Copy File Success! " + destPath);
+                File.Delete(fileFullName);
+                AppendLogInfo("Delete Raw Success! " + destPath);
             }
             MarkFile(fileName);
         }
