@@ -50,15 +50,26 @@
             this.lbl_resize_path = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.btnSelect5 = new System.Windows.Forms.Button();
             this.lbl_output_path = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnSync = new System.Windows.Forms.Button();
+            this.btnSelect7 = new System.Windows.Forms.Button();
+            this.btnSelect6 = new System.Windows.Forms.Button();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -201,7 +212,7 @@
             this.btnResize.FlatAppearance.BorderColor = System.Drawing.Color.Green;
             this.btnResize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnResize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResize.Location = new System.Drawing.Point(399, 20);
+            this.btnResize.Location = new System.Drawing.Point(399, 24);
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(77, 77);
             this.btnResize.TabIndex = 14;
@@ -244,7 +255,7 @@
             // lbl_resize_path
             // 
             this.lbl_resize_path.AutoSize = true;
-            this.lbl_resize_path.Location = new System.Drawing.Point(16, 65);
+            this.lbl_resize_path.Location = new System.Drawing.Point(16, 67);
             this.lbl_resize_path.Name = "lbl_resize_path";
             this.lbl_resize_path.Size = new System.Drawing.Size(89, 12);
             this.lbl_resize_path.TabIndex = 10;
@@ -266,6 +277,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.textBox4);
             this.groupBox2.Controls.Add(this.btnSelect5);
             this.groupBox2.Controls.Add(this.lbl_output_path);
             this.groupBox2.Controls.Add(this.comboBox2);
@@ -274,10 +287,24 @@
             this.groupBox2.Controls.Add(this.btnResize);
             this.groupBox2.Location = new System.Drawing.Point(12, 208);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(503, 105);
+            this.groupBox2.Size = new System.Drawing.Size(503, 116);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "照片缩放";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(107, 87);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(118, 21);
+            this.textBox5.TabIndex = 19;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(107, 62);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(118, 21);
+            this.textBox4.TabIndex = 19;
             // 
             // btnSelect5
             // 
@@ -292,7 +319,7 @@
             // lbl_output_path
             // 
             this.lbl_output_path.AutoSize = true;
-            this.lbl_output_path.Location = new System.Drawing.Point(16, 85);
+            this.lbl_output_path.Location = new System.Drawing.Point(16, 91);
             this.lbl_output_path.Name = "lbl_output_path";
             this.lbl_output_path.Size = new System.Drawing.Size(89, 12);
             this.lbl_output_path.TabIndex = 16;
@@ -302,7 +329,7 @@
             // 
             this.groupBox3.Controls.Add(this.progressBar);
             this.groupBox3.Controls.Add(this.rtbLog);
-            this.groupBox3.Location = new System.Drawing.Point(12, 330);
+            this.groupBox3.Location = new System.Drawing.Point(12, 441);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(503, 168);
             this.groupBox3.TabIndex = 17;
@@ -313,7 +340,7 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 506);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 621);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(527, 22);
             this.statusStrip1.TabIndex = 18;
@@ -324,11 +351,94 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnSync);
+            this.groupBox4.Controls.Add(this.btnSelect7);
+            this.groupBox4.Controls.Add(this.btnSelect6);
+            this.groupBox4.Controls.Add(this.textBox7);
+            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.label6);
+            this.groupBox4.Controls.Add(this.label5);
+            this.groupBox4.Location = new System.Drawing.Point(12, 343);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(503, 92);
+            this.groupBox4.TabIndex = 19;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "文件同步";
+            // 
+            // btnSync
+            // 
+            this.btnSync.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSync.BackgroundImage")));
+            this.btnSync.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSync.FlatAppearance.BorderColor = System.Drawing.Color.Green;
+            this.btnSync.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnSync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSync.Location = new System.Drawing.Point(399, 15);
+            this.btnSync.Name = "btnSync";
+            this.btnSync.Size = new System.Drawing.Size(77, 71);
+            this.btnSync.TabIndex = 20;
+            this.btnSync.UseVisualStyleBackColor = true;
+            this.btnSync.Click += new System.EventHandler(this.btnSync_Click);
+            // 
+            // btnSelect7
+            // 
+            this.btnSelect7.Location = new System.Drawing.Point(261, 52);
+            this.btnSelect7.Name = "btnSelect7";
+            this.btnSelect7.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect7.TabIndex = 23;
+            this.btnSelect7.Text = "选择路径";
+            this.btnSelect7.UseVisualStyleBackColor = true;
+            this.btnSelect7.Click += new System.EventHandler(this.btnSelect7_Click);
+            // 
+            // btnSelect6
+            // 
+            this.btnSelect6.Location = new System.Drawing.Point(261, 26);
+            this.btnSelect6.Name = "btnSelect6";
+            this.btnSelect6.Size = new System.Drawing.Size(75, 23);
+            this.btnSelect6.TabIndex = 9;
+            this.btnSelect6.Text = "选择路径";
+            this.btnSelect6.UseVisualStyleBackColor = true;
+            this.btnSelect6.Click += new System.EventHandler(this.btnSelect6_Click);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(107, 53);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(118, 21);
+            this.textBox7.TabIndex = 22;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(107, 28);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(118, 21);
+            this.textBox6.TabIndex = 20;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 12);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "请选择RAW路径";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "请选择JPG路径";
+            // 
             // RawFind
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 528);
+            this.ClientSize = new System.Drawing.Size(527, 643);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -343,6 +453,8 @@
             this.groupBox3.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,6 +487,16 @@
         private System.Windows.Forms.Button btnSelect5;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button btnSync;
+        private System.Windows.Forms.Button btnSelect7;
+        private System.Windows.Forms.Button btnSelect6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
 

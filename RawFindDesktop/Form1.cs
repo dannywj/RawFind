@@ -12,6 +12,7 @@ namespace RawFindDesktop
 {
     public partial class RawFind : Form
     {
+        static string VERSION = "2.0";
         static string JPG_PATH;
         static string RAW_FILE_EXTENSIOM;
         static int JPG_COUNT;
@@ -24,6 +25,9 @@ namespace RawFindDesktop
         static string PIC_RESIZE_PATH;
         static string PIC_RESIZE_OUTPUT_PATH;
         public static ArrayList processlist = new ArrayList();
+
+        static string SYNC_JPG_PATH;
+        static string SYNC_RAW_PATH;
 
         //第一步：定义BackgroundWorker对象，并注册事件（执行线程主体、执行UI更新事件）
         private BackgroundWorker backgroundWorker_resizer = null;
@@ -49,12 +53,14 @@ namespace RawFindDesktop
         {
             SetBtnStyle(this.btn_process);
             SetBtnStyle(this.btnResize);
-
+            SetBtnStyle(this.btnSync);
+            //default selected 1500px
+            comboBox2.SelectedIndex = 2;
             //改变窗体风格，使之不能用鼠标拖拽改变大小
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             //禁止使用最大化按钮
             this.MaximizeBox = false;
-            this.toolStripStatusLabel.Text = "Copyright © 2017 Develop by Danny Wang";
+            this.toolStripStatusLabel.Text = "Copyright © 2017 Develop by Danny Wang    Version:" + VERSION;
         }
 
         //线程主体方法
@@ -62,16 +68,17 @@ namespace RawFindDesktop
         {
             //...执行线程任务
             AppendLogInfo("=====================begin resize======================");
-            btnResize.Enabled = false;
+            //btnResize.Enabled = false;// 线程任务内无法执行控件UI
 
             //PIC_RESIZE_PATH = "E:\\pic";
             //PIC_RESIZE_OUTPUT_PATH = "E:\\re";
-
+            PIC_RESIZE_PATH = textBox4.Text.ToString();
+            PIC_RESIZE_OUTPUT_PATH = textBox5.Text.ToString();
             if (String.IsNullOrEmpty(PIC_RESIZE_PATH) || String.IsNullOrEmpty(PIC_RESIZE_OUTPUT_PATH))
             {
-                MessageBox.Show("All Path can not empty");
+                //MessageBox.Show("All Path can not empty");
                 AppendLogInfo("All Path can not empty");
-                btnResize.Enabled = true;
+                //btnResize.Enabled = true;
                 return;
             }
             AppendLogInfo("PIC_RESIZE_PATH:" + PIC_RESIZE_PATH);
@@ -645,14 +652,16 @@ namespace RawFindDesktop
 
         private void btnSelect4_Click(object sender, EventArgs e)
         {
-            PIC_RESIZE_PATH = GetSelectedPath();
-            lbl_resize_path.Text = "缩放路径：" + PIC_RESIZE_PATH;
+            //PIC_RESIZE_PATH = GetSelectedPath();
+            textBox4.Text = GetSelectedPath();
+            // lbl_resize_path.Text = "缩放路径：" + PIC_RESIZE_PATH;
         }
 
         private void btnSelect5_Click(object sender, EventArgs e)
         {
-            PIC_RESIZE_OUTPUT_PATH = GetSelectedPath();
-            lbl_output_path.Text = "输出路径：" + PIC_RESIZE_OUTPUT_PATH;
+            //PIC_RESIZE_OUTPUT_PATH = GetSelectedPath();
+            //lbl_output_path.Text = "输出路径：" + PIC_RESIZE_OUTPUT_PATH;
+            textBox5.Text = GetSelectedPath();
         }
 
         private void btnResize_MouseHover(object sender, EventArgs e)
@@ -668,5 +677,67 @@ namespace RawFindDesktop
         }
         #endregion
 
+        #region SYNC
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+            SYNC_JPG_PATH = textBox6.Text.ToString();
+            SYNC_RAW_PATH = textBox7.Text.ToString();
+            if (String.IsNullOrEmpty(SYNC_JPG_PATH) || String.IsNullOrEmpty(SYNC_RAW_PATH))
+            {
+                MessageBox.Show("All Path can not empty");
+                AppendLogInfo("All Path can not empty");
+                return;
+            }
+
+            AppendLogInfo("Begin get sync file list");
+            List<string> jpg_list = new List<string>();
+            string path = SYNC_JPG_PATH;
+            DirectoryInfo folder = new DirectoryInfo(path);
+
+            foreach (FileInfo file in folder.GetFiles())
+            {
+                var ext_name = Path.GetExtension(file.Name).ToUpper();
+                if (ext_name == ".JPG")
+                {
+                    jpg_list.Add(file.Name.ToUpper().Replace("JPG", "NEF"));
+                }
+            }
+
+            List<string> del_list = new List<string>();
+            DirectoryInfo folder_raw = new DirectoryInfo(SYNC_RAW_PATH);
+
+            foreach (FileInfo file in folder_raw.GetFiles())
+            {
+                var ext_name = Path.GetExtension(file.Name).ToUpper();
+                if (ext_name == ".NEF")
+                {
+                    if (!jpg_list.Contains(file.Name.ToUpper()))
+                    {
+                        del_list.Add(file.Name.ToUpper());
+                    }
+
+                }
+            }
+
+            foreach (var item in del_list)
+            {
+                string delpath = SYNC_RAW_PATH + @"\" + item.ToString();
+                File.Delete(delpath);
+                AppendLogInfo("deleted -> " + item.ToString());
+            }
+            AppendLogInfo("同步完成");
+            MessageBox.Show("同步完成");
+        }
+
+        private void btnSelect6_Click(object sender, EventArgs e)
+        {
+            textBox6.Text = GetSelectedPath();
+        }
+
+        private void btnSelect7_Click(object sender, EventArgs e)
+        {
+            textBox7.Text = GetSelectedPath();
+        }
+        #endregion
     }
 }

@@ -13,3 +13,4 @@ C:\mycode\GitHub\RawFind\RawFind\obj\Release\RawFind.exe
 C:\mycode\GitHub\RawFind\RawFind\obj\Release\RawFind.pdb
 C:\mycode\GitHub\RawFind\RawFind\bin\Release\RawFind.exe
 C:\mycode\GitHub\RawFind\RawFind\bin\Release\RawFind.pdb
+C:\mycode\GitHub\RawFind\RawFind\obj\Release\RawFind.csprojResolveAssemblyReference.cache
