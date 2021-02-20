@@ -84,6 +84,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="camera.ico" />
+    <Content Include="resource\aperture_128px_1180464_easyicon.net.png" />
+    <Content Include="resource\Aperture_256px_1115692_easyicon.net.png" />
+    <Content Include="resource\auto.png" />
+    <Content Include="resource\backup.png" />
+    <None Include="resource\sync.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resource\btn.png" />

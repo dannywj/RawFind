@@ -15,3 +15,11 @@ C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.RawFind.resou
 C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.Properties.Resources.resources
 C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.exe
 C:\mycode\GitHub\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.pdb
+C:\RawFind\RawFindDesktop\bin\Release\RawFindDesktop.exe.config
+C:\RawFind\RawFindDesktop\bin\Release\RawFindDesktop.exe
+C:\RawFind\RawFindDesktop\bin\Release\RawFindDesktop.pdb
+C:\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.RawFind.resources
+C:\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.Properties.Resources.resources
+C:\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.csproj.GenerateResource.Cache
+C:\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.exe
+C:\RawFind\RawFindDesktop\obj\Release\RawFindDesktop.pdb
